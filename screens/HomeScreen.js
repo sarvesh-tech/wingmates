@@ -1,12 +1,32 @@
-import { ScrollView, StyleSheet, Text, View, Image } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, Image, RefreshControl } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import profile from '../assets/profile.png'
 
 const HomeScreen = () => {
+
+  const [refreshing, setRefreshing] = useState(false);
+
+  const pullToRefresh = () => {
+    setRefreshing(true);
+
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 500);
+  }
+
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView
+      refreshControl={
+        <RefreshControl 
+        refreshing={refreshing}
+        onRefresh={() => pullToRefresh()}
+        />
+        }
+        >
+
+
         <SafeAreaView>
           <View style={styles.menuWrapper}>
             <Text style={styles.title}>Your Flights</Text>

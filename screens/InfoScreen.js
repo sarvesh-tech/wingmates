@@ -1,7 +1,7 @@
-
+import DropDownPicker from 'react-native-dropdown-picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { ImageBackground, Image, KeyboardAvoidingView, Picker, StyleSheet, Text, TextInput, TouchableWithoutFeedback, TouchableOpacity, View, Keyboard } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import { ImageBackground, Image, Image, KeyboardAvoidingView, Picker, StyleSheet, Text, TextInput, TouchableWithoutFeedback, TouchableOpacity, View, Keyboard } from 'react-native';
+import React, { useState, useEffect }, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { MultipleSelectList, SelectList } from 'react-native-dropdown-select-list';
 
@@ -10,7 +10,7 @@ const image = require('../assets/bg_wingmates.png');
 
 const InfoScreen = () => {
 
-  const [selected, setSelected] = React.useState("");
+  const [selected, setSelected] = React.useState([]);
   
   const languages = [
     { key: '1', value: 'Arabic' },
@@ -234,6 +234,12 @@ const InfoScreen = () => {
   const handleRegisterPress = () => {
     navigation.navigate('Home');
   };
+
+  const handleSelectLanguage = (selected) => {
+    console.log(selected)
+    
+  }
+
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={styles.container}
@@ -244,8 +250,9 @@ const InfoScreen = () => {
           <ImageBackground source={image} style={styles.backgroundImage}>
             <View style={styles.inputContainer}>
               {/* <Image source={logo} style = {styles.logo} /> */}
+              {/* <Image source={logo} style = {styles.logo} /> */}
               <Text style={styles.loginText}>Almost there...</Text>
-              
+                            
               <View style={styles.textContainer}>
                 <Text style={styles.subText}>Personalize your flight experience</Text>
               </View>
@@ -413,8 +420,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#000',
+    borderColor: '#000',
     width: '48%',
     marginTop: 24,
+    zIndex: 0,
     zIndex: 0,
   },
   descriptionInput: {
@@ -425,7 +434,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#000',
+    borderColor: '#000',
     marginTop: 19,
+    height: 170, // Adjust the height to make the TextInput bigger
+    zIndex: 0,
     height: 170, // Adjust the height to make the TextInput bigger
     zIndex: 0,
   },
