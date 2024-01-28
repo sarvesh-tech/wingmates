@@ -5,6 +5,7 @@ import {useState, useEffect} from'react'
 import {firebase} from '../firebase';
 import { useNavigation } from '@react-navigation/native';
 import UserAPI from '../services/UserAPI';
+import { MultipleSelectList, SelectList } from 'react-native-dropdown-select-list';
 
 const image = require('../assets/bg_wingmates.png');
 
@@ -14,7 +15,7 @@ const RegisterScreen = () => {
     const [emailField, setEmailField] = useState("")
     const [passwordField, setPasswordField] = useState("")
     const [nameField, setNameField] = useState("")
-    const [languageField, setLanguageField] = useState("")
+    const [languageField, setLanguageField] = useState([])
     const [nationalityField, setNationalityField] = useState("")
     const [ageField, setAgeField] = useState("")
     const [genderField, setGenderField] = useState("")
@@ -118,7 +119,8 @@ const RegisterScreen = () => {
                             style={styles.input}
                             secureTextEntry
                         />
-                        <TextInput
+                        
+                        {/* <TextInput
                             placeholder="Age"
                             value={ageField}
                             onChangeText={text => {setAgeField(text)
@@ -126,7 +128,8 @@ const RegisterScreen = () => {
                             }}
                             style={styles.input}
                             //secureTextEntry
-                        />
+                        /> */}
+
                         </View>
                         <View>
                             <TouchableOpacity
@@ -153,6 +156,19 @@ const RegisterScreen = () => {
                         
                         <View style={styles.textContainer}>
                             <Text style={styles.subText}>Personalize your flight experience</Text>
+                        </View>
+
+                        <View style={{ position: 'relative', zIndex: 2 }}>
+                            <MultipleSelectList 
+                                placeholder = "Language"
+                                setSelected={(val) => setSelected(val)} 
+                                data={languages} 
+                                save="value"
+                                onSelect={() => alert(selected)} 
+                                label="Languages"
+                                dropdownStyles={styles.dropDown}
+                                boxStyles={styles.boxDropDown}  
+                            />
                         </View>
 
                             <TextInput
