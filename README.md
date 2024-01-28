@@ -17,5 +17,6 @@ Stack:
 - Postman
 - MongoDB
 - Firebase
+- Expo
 - python/machine learning scripts 
 
